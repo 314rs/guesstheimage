@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .blur {
+
+            height: 100vh;
+        }
+
+        .element {
+            animation-name: blur;
+            animation-duration: 45s;
+            animation-timing-function: ease-out;
+        }
+
+        @keyframes blur {
+            0% {
+                -webkit-filter: blur(80px);
+            }
+
+            100% {
+                -webkit-filter: blur(0);
+            }
+        }
+
+
+        #pausetaste:checked~.element {
+            animation-play-state: paused;
+
+        }
+
+        #resol:checked~.element {
+            animation-duration: 0s;
+
+        }
+    </style>
+
+</head>
+
+<body style="background-color:white;">
+
+    <input type="checkbox" id="pausetaste" checked>
+    <label for="pausetaste">Pause</label>
+    <br>
+    <input type="checkbox" id="resolve">
+    <label for="resolve">Aufl&ouml;sen</label>
+    <br>
+    <select id="Auswahl" onchange="drop(this.value)">
+        <option value="https://geliebte-katze.de/sites/geliebte-katze.de/files/katzenfoto-des-monats.jpg">Bild1</option>
+        <option value="https://i.computer-bild.de/imgs/fotowettbewerb/3/4/1/3/7/4/0/Natur-1024x724-49bfd77c2e142c86.jpg">Bild2</option>
+        <option value="https://www.watson.ch/imgdb/befc/Qx,B,0,0,500,348,208,145,83,58/3974071219771239">Bild3</option>
+        <option value="https://readersdigest.de/media/zoo/images/Elefant-stark_901ba5960062b8dd06f47637a4e8f18d.jpg">Bild4</option>
+    </select>
+
+
+
+    <center class="element" id="element">
+        <img class="blur" id="Bild" src="https://geliebte-katze.de/sites/geliebte-katze.de/files/katzenfoto-des-monats.jpg">
+    </center>
+
+    <script>
+        function drop(bild) {
+            document.getElementById("Bild").src = bild;
+            document.getElementById("element").classList.remove('element');
+            void document.getElementById("element").offsetWidth;
+            document.getElementById("element").classList.add('element');
+            document.getElementById("resolve").checked = false;
+            document.getElementById("pausetaste").checked = true;
+
+
+
+        }
+    </script>
+
+
+</body>
+
+</html>
